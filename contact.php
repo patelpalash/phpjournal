@@ -11,6 +11,9 @@
   
       <title>icoder-heaven for programmers</title>
     </head>
+    <?php
+        echo "get and post in php";
+    ?>
     <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
@@ -54,14 +57,14 @@
       
         <div class="container my-4">
             <h2>Contact us</h2>
-
+            <form action="" method="POST">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@gmail.com">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@gmail.com">
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Type your Query</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="password" class="form-label">Type your Query</label>
+                <textarea class="form-control" id="password" rows="3" name="pass"></textarea>
               </div>
                         <!-- RADIO  BUTTONS -->
 
@@ -83,6 +86,7 @@
 
 
               <button class="btn btn-success">submit</button>
+            </form>
 
         </div>
         
