@@ -11,9 +11,6 @@
   
       <title>icoder-heaven for programmers</title>
     </head>
-    <?php
-        echo "get and post in php";
-    ?>
     <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
@@ -24,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link " aria-current="page" href="/">Home</a>
+                  <a class="nav-link " aria-current="page" href="index.html">Home</a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link " href="/about.html">About</a>
@@ -54,38 +51,62 @@
             </div>
           </div>
         </nav>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+          $name = $_POST['name'];
+          $email = $_POST['email'];
+          $desc= $_POST['desc'];
+
+        $servername = "localhost";
+        $username ="root";
+        $password="";
+        $database="contacts";
+        
+        $conn = mysqli_connect($servername,$username,$password,$database);
+          if ($conn == false) {
+            die("your code is not working and we can't make a connection to our database".mysqli_connect_error());
+          }
+          else{
+            print("connection was successfull<br>");
+
+            $sql = "INSERT INTO `contactus` ( `name`, `email`, `concern`, `dt`) VALUES ( '$name', '$email', '$desc', current_timestamp())";
+            $result=mysqli_query($conn,$sql);
+            if($result){
+              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>SUCCESS</strong> your entry submited successfully
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+                }
+            else{
+              echo "record doesn't inserted successfully because of this error".mysqli_error($conn);
+
+            }
+          }
+
+        }
+        //submit this to a database
+    ?>
+
       
         <div class="container my-4">
-            <h2>Contact us</h2>
-            <form action="" method="POST">
+            <h2>Contact us for your concerns</h2>
+            <form action="contact.php" method="POST">
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="name@gmail.com">
+                <label for="name" class="form-label">Name</label>
+                <input type="name" class="form-control" name="name" id="name" >
               </div>
               <div class="mb-3">
-                <label for="password" class="form-label">Type your Query</label>
-                <textarea class="form-control" id="password" rows="3" name="pass"></textarea>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@gmail.com">
               </div>
-                        <!-- RADIO  BUTTONS -->
 
-              <H6>are you a member?</H6>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
-                <label class="form-check-label" for="gridRadios1">
-                  YES
-                </label>
+              <div class="mb-3">
+                <label for="desc" class="form-label">Type your Query</label>
+                <textarea class="form-control" id="desc" rows="7" name="desc"></textarea>
               </div>
-              <div class="form-check ">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" >
-                <label class="form-check-label" for="gridRadios2">
-                  NO
-                </label>
-              </div>
-            </div>
-        
-
-
+ 
               <button class="btn btn-success">submit</button>
+
             </form>
 
         </div>
@@ -101,7 +122,7 @@
   
        <footer class="container">
           <p class="float-end"><a href="#">Back to top</a></p>
-          <p>© 2020-2021 icoder, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+          <p>© 2020-2021 icoder trademark by palash patel, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
         </footer>
         
       
