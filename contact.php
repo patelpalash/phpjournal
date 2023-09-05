@@ -78,7 +78,10 @@
             </div>';
                 }
             else{
-              echo "record doesn't inserted successfully because of this error".mysqli_error($conn);
+              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>SUCCESS</strong> your entry was not  successfull because our system is hacked right now we are making sure to fix that. thanks for your patients
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
 
             }
           }
